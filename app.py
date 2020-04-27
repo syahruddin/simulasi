@@ -44,7 +44,16 @@ def view():
                 code += "</td></tr>"
                 j+=1
 
-            return render_template('view.html',d = Markup(code))
+            url = "https://apismartsekre.herokuapp.com/getanggota"
+            data = requests.get(url).json()
+            code2 = ""
+            j = 0
+            for i in data:
+                temp = data[j]
+                code2 = code2 +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1])+"</td><td>" +str(temp[2])+ "</td></tr>"
+                j+=1
+
+            return render_template('view.html',d = Markup(code),e = Markup(code2) )
         else:
             return redirect(url_for('logout'))
 
