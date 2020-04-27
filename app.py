@@ -50,12 +50,54 @@ def index():
 
 @app.route('/masuk', methods=['POST','GET'])
 def masuk():
-    return render_template('index.html')
+    id_unit = int(request.args['id_unit'])
+    id_mahasiswa = int(request.form['id_mahasiswa'])
+
+    url = "https://apismartsekre.herokuapp.com/getanggota?id_unit=" + str(id_unit)
+    data = requests.get(url).json()
+    ada = False
+    j = 0
+    for i in data:
+        temp = data[j]
+        if str(id_mahasiswa) == str(temp[0]):
+            ada = True
+        j+=1
+    if ada:
+        req = "https://apismartsekre.herokuapp.com/postbuka?id_unit=" + str(id_unit) + "&id_mahasiswa=" + str(id_mahasiswa)
+        a =requests.get(req)
+
+        req = "https://apismartsekre.herokuapp.com/updatestatus?id_unit=" + str(id_unit) + "&status_pintu=1&status_listrik=1"
+        a =requests.get(req)
+
+
+
+    return redirect(url_for('index'))
 
 
 @app.route('/keluar', methods=['POST','GET'])
 def keluar():
-    return 0
+    id_unit = int(request.args['id_unit'])
+    id_mahasiswa = int(request.form['id_mahasiswa'])
+
+    url = "https://apismartsekre.herokuapp.com/getanggota?id_unit=" + str(id_unit)
+    data = requests.get(url).json()
+    ada = False
+    j = 0
+    for i in data:
+        temp = data[j]
+        if str(id_mahasiswa) == str(temp[0]):
+            ada = True
+        j+=1
+    if ada:
+        req = "https://apismartsekre.herokuapp.com/posttutup?id_unit=" + str(id_unit) + "&id_mahasiswa=" + str(id_mahasiswa)
+        a =requests.get(req)
+
+        req = "https://apismartsekre.herokuapp.com/updatestatus?id_unit=" + str(id_unit) + "&status_pintu=0&status_listrik=0"
+        a =requests.get(req)
+
+
+
+    return redirect(url_for('index'))
 
 
 if __name__ == '__main__':
