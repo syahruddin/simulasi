@@ -37,8 +37,16 @@ def index():
         code2 = code2 +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1])+"</td><td>" +str(temp[2])+ "</td></tr>"
         j+=1
 
+    url = "https://apismartsekre.herokuapp.com/getlog"
+    data = requests.get(url).json()
+    code3 = ""
+    j = 0
+    for i in data:
+        temp = data[j]
+        code2 = code2 +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1])+"</td><td>" +str(temp[2])+ "</td><td>" +str(temp[3])+ "</td></tr>"
+        j+=1
 
-    return render_template('index.html' , d = Markup(code) ,e = Markup(code2))
+    return render_template('index.html' , d = Markup(code) ,e = Markup(code2),f= Markup(code3))
 
 @app.route('/masuk', methods=['POST','GET'])
 def masuk():
