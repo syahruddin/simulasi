@@ -20,16 +20,14 @@ def index():
         j+=1
 
 
-    url2 = "https://apismartsekre.herokuapp.com/getanggota"
-    data2 = requests.get(url2).json()
+    url = "https://apismartsekre.herokuapp.com/getanggota"
+    data = requests.get(url).json()
     code2 = ""
-    j2 = 0
-    for i2 in data2:
-        temp = data[j2]
+    j = 0
+    for i in data:
+        temp = data[j]
         code2 = code2 +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1])+"</td><td>" +str(temp[2])+ "</td></tr>"
-        j2+=1
-    print(code2)
-
+        j+=1
 
 
     return render_template('index.html' , d = Markup(code) ,e = Markup(code2))
