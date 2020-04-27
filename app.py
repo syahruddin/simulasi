@@ -16,7 +16,7 @@ def index():
     j = 0
     for i in data:
         temp = data[j]
-        code = code +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1]) +"</td></tr>"
+        code = code +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1]) +  "</td><td>" + "<form action="{{ url_for('keluar') }}" method="POST"><label for="lname">ID Mahasiswa:</label><input type="int" id="id_mahasiswa" name="id_mahasiswa"><button type="submit" value="Submit">Masuk </button> </form>" + "</td><td>" +   <div class="col-md-4"><a class="btn btn-secondary" href="{{ url_for('keluar') }}">Logout</a></div> +"</td></tr>"
         j+=1
 
 
@@ -39,6 +39,15 @@ def index():
 
 
     return render_template('index.html' , d = Markup(code) ,e = Markup(code2))
+
+@app.route('/masuk', methods=['POST','GET'])
+def masuk():
+    return 0
+
+
+@app.route('/keluar', methods=['POST','GET'])
+def keluar():
+    return 0
 
 
 if __name__ == '__main__':
