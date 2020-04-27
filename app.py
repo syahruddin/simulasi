@@ -52,6 +52,7 @@ def view():
                 temp = data[j2]
                 code2 = code2 +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1])+"</td><td>" +str(temp[2])+ "</td></tr>"
                 j2+=1
+            print(code2)
 
             return render_template('view.html',d = Markup(code), e = Markup(code2) )
         else:
