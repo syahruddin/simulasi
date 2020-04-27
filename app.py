@@ -7,7 +7,7 @@ app.secret_key = 'ha21j3nhhi08jhfd88'
 
 @app.route('/', methods=['POST','GET'])
 def index():
-    
+
     url = "https://apismartsekre.herokuapp.com/getstatus"
     data = requests.get(url).json()
     code = ""
@@ -52,11 +52,11 @@ def masuk():
     id_mahasiswa = int(request.form['id_mahasiswa'])
 
     url = "https://apismartsekre.herokuapp.com/getanggota?id_unit=" + str(id_unit)
-    data = requests.get(url).json()
+    data3 = requests.get(url).json()
     ada = False
     j = 0
     for i in data:
-        temp = data[j]
+        temp = data3[j]
         if str(id_mahasiswa) == str(temp[0]):
             ada = True
         j+=1
@@ -78,11 +78,11 @@ def keluar():
     id_mahasiswa = int(request.form['id_mahasiswa'])
 
     url = "https://apismartsekre.herokuapp.com/getanggota?id_unit=" + str(id_unit)
-    data = requests.get(url).json()
+    data2 = requests.get(url).json()
     ada = False
     j = 0
     for i in data:
-        temp = data[j]
+        temp = data2[j]
         if str(id_mahasiswa) == str(temp[0]):
             ada = True
         j+=1
