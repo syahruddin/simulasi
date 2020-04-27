@@ -29,7 +29,7 @@ def index():
         code2 = code2 +"<tr><td>"+str(temp[0])+"</td><td>" + str(temp[1])+"</td><td>" +str(temp[2])+ "</td></tr>"
         j+=1
 
-    url = "https://apismartsekre.herokuapp.com/getanggota?id_unit=1"
+    url = "https://apismartsekre.herokuapp.com/getanggota?id_unit=2"
     data = requests.get(url).json()
     j = 0
     for i in data:
