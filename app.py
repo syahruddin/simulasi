@@ -7,9 +7,7 @@ app.secret_key = 'ha21j3nhhi08jhfd88'
 
 @app.route('/', methods=['POST','GET'])
 def index():
-    if request.method == 'POST':
-        return render_template('index.html')
-
+    
     url = "https://apismartsekre.herokuapp.com/getstatus"
     data = requests.get(url).json()
     code = ""
